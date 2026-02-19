@@ -1,23 +1,20 @@
 'use client'
 
-import { fetchVehicles } from "@/features/results/resultsSlice";
 import { RootState } from "@/store/store";
-import { useEffect } from "react";
 import { Vehicle } from "@/services/api";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch } from "@/store/store";
+import { useSelector } from "react-redux";
+import SearchForm from "@/ui/SearchForm/SearchForm";
 
 export default function Home() {
   const vehicles = useSelector((state: RootState) => state.results.vehicles);
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(fetchVehicles());
-  }, [dispatch]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h2>Encuentra tu vehículo ideal</h2>
+
+      <section>
+        <SearchForm />
+      </section>
 
       <div>
         {vehicles.map((vehicle: Vehicle) => (
