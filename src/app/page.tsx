@@ -1,31 +1,27 @@
 'use client'
 
-import { RootState } from "@/store/store";
-import { Vehicle } from "@/services/api";
-import { useSelector } from "react-redux";
+import styles from "./page.module.css";
 import SearchForm from "@/ui/SearchForm/SearchForm";
+import VehicleList from "@/ui/VehicleList/VehicleList";
+import Summary from "@/ui/Summary/Summary";
 
 export default function Home() {
-  const vehicles = useSelector((state: RootState) => state.results.vehicles);
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h2>Encuentra tu vehículo ideal</h2>
+    <div className={styles.grid}>
+      <div className={styles.mainColumn}>
+        <section className={styles.searchSection}>
+          <h2 className={styles.sectionTitle}>Encuentra tu vehículo ideal</h2>
+          <SearchForm />
+        </section>
 
-      <section>
-        <SearchForm />
-      </section>
-
-      <div>
-        {vehicles.map((vehicle: Vehicle) => (
-          <div key={vehicle.id}>
-            <h3>{vehicle.name}</h3>
-            <p>{vehicle.price}</p>
-            <img src={vehicle.image} alt={vehicle.name} />
-          </div>
-        ))}
+        <section className={styles.resultsSection}>
+          <VehicleList />
+        </section>
       </div>
 
+      <div className={styles.sidebar}>
+        <Summary />
+      </div>
     </div>
   );
 }

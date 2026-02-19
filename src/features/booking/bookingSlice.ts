@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Vehicle } from '../../lib/api';
+import { Vehicle } from '../../services/api';
 
 interface BookingState {
     selectedVehicle: Vehicle | null;
