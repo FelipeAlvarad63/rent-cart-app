@@ -1,13 +1,13 @@
 'use client';
 
-import React from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import VehicleCard from '../VehicleCard/VehicleCard';
 import { selectVehicle } from '../../features/booking/bookingSlice';
 import styles from './VehicleList.module.css';
 
-const VehicleList: React.FC = () => {
+const VehicleList = () => {
     const dispatch = useDispatch();
     const { vehicles, loading, error } = useSelector((state: RootState) => state.results);
     const { selectedVehicle } = useSelector((state: RootState) => state.booking);

@@ -13,7 +13,7 @@ interface VehicleCardProps {
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, onSelect, isSelected }) => {
     return (
         <div className={`${styles.card} ${isSelected ? styles.selected : ''}`}>
-            {/* Placeholder for image if we had real ones, or we can use a div */}
+            {/* TODO: usar imágenes reales */}
             <div className={styles.imagePlaceholder}>
                 <span>{vehicle.type}</span>
             </div>

@@ -38,6 +38,6 @@ export const searchVehicles = async (): Promise<Vehicle[]> => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(MOCK_VEHICLES);
-        }, 1000); // Simular delay
+        }, 1000);
     });
 };

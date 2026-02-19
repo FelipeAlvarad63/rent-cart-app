@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
+
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import styles from './Summary.module.css';
 
-const Summary: React.FC = () => {
+const Summary = () => {
     const { selectedVehicle } = useSelector((state: RootState) => state.booking);
     const { pickupDate, returnDate } = useSelector((state: RootState) => state.search);
 
@@ -13,7 +13,7 @@ const Summary: React.FC = () => {
         return null;
     }
 
-    // Calculate days difference
+    // TODO: manejar caso donde returnDate < pickupDate
     const start = new Date(pickupDate);
     const end = new Date(returnDate);
     const diffTime = Math.abs(end.getTime() - start.getTime());

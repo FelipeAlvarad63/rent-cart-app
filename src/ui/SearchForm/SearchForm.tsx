@@ -17,6 +17,7 @@ const SearchForm = () => {
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!location || !pickupDate || !returnDate) {
+            // TODO: mostrar mensaje de error en la UI en vez de alert
             alert('Por favor complete todos los campos');
             return;
         }
