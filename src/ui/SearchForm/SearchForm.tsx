@@ -13,13 +13,15 @@ const SearchForm = () => {
     const [location, setLocation] = useState('');
     const [pickupDate, setPickupDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
+    const [error, setError] = useState<string | null>(null);
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!location || !pickupDate || !returnDate) {
-            // TODO: mostrar mensaje de error en la UI en vez de alert
-            alert('Por favor complete todos los campos');
+            setError('Por favor complete todos los campos');
             return;
+        } else {
+            setError(null);
         }
 
         dispatch(setSearchCriteria({ location, pickupDate, returnDate }));
@@ -28,42 +30,46 @@ const SearchForm = () => {
     };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.fieldGroup}>
-                <label htmlFor="location" className={styles.label}>Ciudad o Aeropuerto</label>
-                <input
-                    id="location"
-                    type="text"
-                    className={styles.input}
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    placeholder="Ej: Madrid"
-                />
-            </div>
-            <div className={styles.fieldGroup}>
-                <label htmlFor="pickupDate" className={styles.label}>Fecha de Recogida</label>
-                <input
-                    id="pickupDate"
-                    type="date"
-                    className={styles.input}
-                    value={pickupDate}
-                    onChange={(e) => setPickupDate(e.target.value)}
-                />
-            </div>
-            <div className={styles.fieldGroup}>
-                <label htmlFor="returnDate" className={styles.label}>Fecha de Devolución</label>
-                <input
-                    id="returnDate"
-                    type="date"
-                    className={styles.input}
-                    value={returnDate}
-                    onChange={(e) => setReturnDate(e.target.value)}
-                />
-            </div>
-            <button type="submit" className={styles.button}>
-                Buscar
-            </button>
-        </form>
+        <div className={styles.containerForm}>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <div className={styles.fieldGroup}>
+                    <label htmlFor="location" className={styles.label}>Ciudad o Aeropuerto</label>
+                    <input
+                        id="location"
+                        type="text"
+                        className={styles.input}
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        placeholder="Ej: Madrid"
+                    />
+                </div>
+                <div className={styles.fieldGroup}>
+                    <label htmlFor="pickupDate" className={styles.label}>Fecha de Recogida</label>
+                    <input
+                        id="pickupDate"
+                        type="date"
+                        className={styles.input}
+                        value={pickupDate}
+                        onChange={(e) => setPickupDate(e.target.value)}
+                    />
+                </div>
+                <div className={styles.fieldGroup}>
+                    <label htmlFor="returnDate" className={styles.label}>Fecha de Devolución</label>
+                    <input
+                        id="returnDate"
+                        type="date"
+                        className={styles.input}
+                        value={returnDate}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                    />
+                </div>
+                <button type="submit" className={styles.button}>
+                    Buscar
+                </button>
+            </form>
+
+            {error && <p className={styles.error}>{error}</p>}
+        </div>
     );
 };
 
